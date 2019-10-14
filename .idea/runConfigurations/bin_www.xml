@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="DEBUG" value="academic-community-backend:*" />
+      <env name="PORT" value="4000" />
+      <env name="PGUSER" value="zamazingo" />
+      <env name="PGPASSWORD" value="70850dad-EEEE-49a6-b385-2ee2b9b9e5e0" />
+      <env name="PGHOST" value="51.159.27.223" />
+      <env name="PGPORT" value="50406" />
+      <env name="PGDATABASE" value="gtubt" />
+    </envs>
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
+      <browser url="http://localhost:3000/" />
+    </EXTENSION>
+    <method v="2" />
+  </configuration>
+</component>
