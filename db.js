@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 
-const config = { max: 10 };
+const config = { max: 5 };
 
 const pool = new Pool(config);
 

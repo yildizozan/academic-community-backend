@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const serverless = require("serverless-http");
 const express = require("express");
 const cookieParser = require("cookie-parser");
@@ -128,8 +130,5 @@ app.delete("/api/symbols/:id", isAuthenticated, (request, response) => {
     });
 });
 
-if (process.env.NODE_ENV === "production") {
-  module.exports.handler = serverless(app);
-} else {
-  module.exports = app;
-}
+module.exports = app;
+module.exports.handler = serverless(app);

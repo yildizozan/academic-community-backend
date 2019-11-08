@@ -19,7 +19,7 @@ function register(request, response) {
       const data = res.rows[0].id;
       return response.json({ success: true, data });
     })
-    .catch(err => response.json({ success: false, err }));
+    .catch(err => response.json({ success: false, err: err.toString() }));
 }
 
 async function login(request, response) {
@@ -41,7 +41,7 @@ async function login(request, response) {
       return response.json({ success: true, data });
     })
     .catch(err => {
-      return response.json({ success: false, err });
+      return response.json({ success: false, err: err.toString() });
     });
 }
 

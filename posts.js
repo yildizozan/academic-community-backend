@@ -13,7 +13,7 @@ async function getPosts(request, response) {
       return response.json({ success: true, data: res.rows });
     })
     .catch(err => {
-      return response.json({ success: false, err });
+      return response.json({ success: false, err: err.toString() });
     });
 }
 
@@ -42,7 +42,7 @@ async function createPost(request, response) {
     const token = request.headers.authorization.split(" ")[1];
     user = tokenizer.verify(token, "secret");
   } catch (err) {
-    return response.status(400).json({ success: false, message: "Invalid token!", err });
+    return response.status(400).json({ success: false, message: "Invalid token!", err: err.toString() });
   }
 
   const query = `INSERT INTO public.posts (author_id, image, title, content) VALUES ($1, $2, $3, $4) RETURNING id`;
