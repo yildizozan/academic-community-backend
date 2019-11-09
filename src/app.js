@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const serverless = require("serverless-http");
 const express = require("express");
 const cookieParser = require("cookie-parser");
