@@ -1,11 +1,10 @@
-service: academic-community
+service: gtubt
 
 provider:
   name: aws
   runtime: nodejs10.x
   stage: production
   region: eu-central-1
-  memorySize: 128
   timeout: 30
 
   environment:
@@ -17,22 +16,11 @@ provider:
 
 functions:
   app:
-    handler: app/app.handler
+    handler: src/app.handler
     events:
-      - http:
-          method: ANY
-          path: /api/{proxy+}
-          cors: true
+      - http: ANY /api/{proxy+}
     layers:
-      - Ref: NodeModulesLambdaLayer
-
-layers:
-  NodeModules:
-    name: node_modules
-    path: layer
-    description: Nodejs Modules
-    compatibleRuntimes:
-      - nodejs10.x
+      - arn:aws:lambda:eu-central-1:${env:AWS_USERID}:layer:node_modules:${env:LAYER_VERSION}
 
 package:
   exclude:
@@ -43,19 +31,3 @@ package:
     - .git/**
     - yarn.lock
   include:
-
-plugins:
-  - serverless-domain-manager
-  - serverless-offline
-
-custom:
-  customDomain:
-    domainName: api.yildizozan.com
-    basePath: ""
-    stage: ${self:provider.stage}
-    certificateName: "*.yildizozan.com"
-    #certificateArn: arn:aws:acm:us-east-1:886175673370:certificate/b73a3892-96f8-4192-a888-710d656792dd
-    createRoute53Record: false
-  serverless-offline:
-    httpsProtocol: "dev-certs"
-    port: 4000
